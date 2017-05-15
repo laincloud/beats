@@ -44,6 +44,7 @@ The supported processors are:
  * <<drop-fields,`drop_fields`>>
  * <<include-fields,`include_fields`>>
  * <<kubernetes,`kubernetes`>>
+ * <<parse_regex_fields, `parse_regex_fields`>>
 
 [[conditions]]
 ==== Conditions
@@ -542,3 +543,18 @@ processors:
           lookup_fields: ["metricset.host"]
 -------------------------------------------------------------------------------
 
+[[parse_regex_fields]]
+== Parse regex fields
+
+The `parse_regex_fields` processor can parse the `message` field of the event by the `regexp` parameter if the associated condition is fulfilled. It can also capture the submatches as the root fields. The `regexp` parameter is mandatory. The regular expression must be accepted by the `RE2` syntax.
+
+[source,yaml]
+-------------------------------------------------------------------------------
+processors:
+- parse_regex_fields:
+    regexp: '^(?P<remote_addr>\S+)@(?P<remote_user>\S+)@\[(?P<time_local>[^\]]+)\]@(?P<request_host>\S+)'
+-------------------------------------------------------------------------------
+
+See <<conditions>> for a list of supported conditions.
+
+If the `message` field matches `regexp`. Field `remote_addr`, `remote_user`, `time_local` and `request_host` will be in the new event.
