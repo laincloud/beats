@@ -9,17 +9,21 @@ import (
 	"github.com/elastic/beats/libbeat/processors"
 )
 
+const defaultSourceField = "message"
+
 type parseRegexFields struct {
-	Regexp *regexp.Regexp
+	Regexp      *regexp.Regexp
+	SourceField string
 }
 
 type parseRegexFieldsConfig struct {
-	Regexp string `config:"regexp"`
+	Regexp      string `config:"regexp"`
+	SourceField string `config:"source_field"`
 }
 
 func init() {
 	processors.RegisterPlugin("parse_regex_fields",
-		configChecked(newParseRegexFields, allowedFields("when", "regexp"), requireFields("regexp")))
+		configChecked(newParseRegexFields, allowedFields("when", "regexp", "source_field"), requireFields("regexp")))
 }
 
 func newParseRegexFields(c common.Config) (processors.Processor, error) {
@@ -29,6 +33,11 @@ func newParseRegexFields(c common.Config) (processors.Processor, error) {
 		return nil, fmt.Errorf("fail to unpack the parse_regex_fields configuration: %s", err)
 	}
 	p := parseRegexFields{}
+	if config.SourceField == "" {
+		p.SourceField = defaultSourceField
+	} else {
+		p.SourceField = config.SourceField
+	}
 	if p.Regexp, err = regexp.Compile(config.Regexp); err != nil {
 		err = fmt.Errorf("fail to compile the regexp of parse_regex_fields: %s", err)
 		return nil, err
@@ -38,7 +47,10 @@ func newParseRegexFields(c common.Config) (processors.Processor, error) {
 
 func (p parseRegexFields) Run(event common.MapStr) (common.MapStr, error) {
 	newEvent := event.Clone()
-	messageObj, err := newEvent.GetValue("message")
+	if hasField, _ := newEvent.HasKey(p.SourceField); !hasField {
+		return newEvent, nil
+	}
+	messageObj, err := newEvent.GetValue(p.SourceField)
 	if err != nil {
 		return newEvent, fmt.Errorf("process event failed: %s", err.Error())
 	}
