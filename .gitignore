@@ -1,4 +1,5 @@
 # Directories
+filebeat/.idea/
 /.vagrant
 /.idea
 /build
