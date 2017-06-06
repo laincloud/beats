@@ -58,18 +58,23 @@ func newTagLainFields(c common.Config) (processors.Processor, error) {
 }
 
 func (t tagLainFields) Run(event common.MapStr) (common.MapStr, error) {
+	if exist, _ := event.HasKey("container_id"); !exist {
+		return nil, nil
+	}
 	containerID, _ := event.GetValue("container_id")
-
-	if containerInfo, exist := t.holder.data[containerID.(string)]; exist && containerID != "" {
+	var containerIDStr string
+	var ok bool
+	if containerIDStr, ok = containerID.(string); !ok {
+		return nil, nil
+	}
+	if containerInfo, exist := t.holder.data[containerIDStr]; exist && containerIDStr != "" {
 		event.Put("app_name", containerInfo.AppName)
 		event.Put("proc_name", containerInfo.ProcName)
 		event.Put("instance_no", containerInfo.InstanceNo)
 		event.Delete("container_id")
-	} else {
-		event.Put("app_name", "public")
-		event.Put("proc_name", "public")
+		return event, nil
 	}
-	return event, nil
+	return nil, nil
 }
 
 func (t tagLainFields) updateContainerInfo() {
@@ -97,8 +102,8 @@ func (t tagLainFields) updateContainerInfo() {
 							}
 						}
 						if !reflect.DeepEqual(shortIDData, t.holder.data) {
-							logp.Info("App data changed")
-							t.holder.data = newData.Data
+							logp.Info("App data changed: %v", shortIDData)
+							t.holder.data = shortIDData
 						}
 					}
 				}
