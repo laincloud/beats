@@ -71,6 +71,7 @@ func (t tagLainFields) Run(event common.MapStr) (common.MapStr, error) {
 		event.Put("app_name", containerInfo.AppName)
 		event.Put("proc_name", containerInfo.ProcName)
 		event.Put("instance_no", containerInfo.InstanceNo)
+		event.Put("app_version", containerInfo.AppVersion)
 		event.Delete("container_id")
 		return event, nil
 	}

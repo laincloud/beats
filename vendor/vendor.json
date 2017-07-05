@@ -9,22 +9,22 @@
 			"revisionTime": "2016-08-03T06:53:29Z"
 		},
 		{
-			"checksumSHA1": "NkuvZCzJPWDeO36FJN9a2ATjXgU=",
+			"checksumSHA1": "kfwAzXAmaTdf0w1zfy+yAKaYiBY=",
 			"path": "github.com/laincloud/lainlet/api/v2",
-			"revision": "5f626341142dbf03af1ea9307b1d9671ad9334ff",
-			"revisionTime": "2017-04-24T10:01:25Z"
+			"revision": "4a22b52b841f6ad4a453a338362c2b48aa6f8ebe",
+			"revisionTime": "2017-07-05T06:08:51Z"
 		},
 		{
 			"checksumSHA1": "zI9JMhM/Ujr9yVyLLmPP1bEKL/c=",
 			"path": "github.com/laincloud/lainlet/client",
-			"revision": "5f626341142dbf03af1ea9307b1d9671ad9334ff",
-			"revisionTime": "2017-04-24T10:01:25Z"
+			"revision": "4a22b52b841f6ad4a453a338362c2b48aa6f8ebe",
+			"revisionTime": "2017-07-05T06:08:51Z"
 		},
 		{
-			"checksumSHA1": "vQ0rqeba9gqGcJsTZueMswqLdho=",
+			"checksumSHA1": "iE2uTuZoNqFfsopJZpxphty3UXo=",
 			"path": "github.com/laincloud/lainlet/watcher/container",
-			"revision": "5f626341142dbf03af1ea9307b1d9671ad9334ff",
-			"revisionTime": "2017-04-24T10:01:25Z"
+			"revision": "4a22b52b841f6ad4a453a338362c2b48aa6f8ebe",
+			"revisionTime": "2017-07-05T06:08:51Z"
 		},
 		{
 			"checksumSHA1": "Z0I4guD8AejM1hB3ltS/pTS60nQ=",
