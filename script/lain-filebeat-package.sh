@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 RPM_VERSION='temp'
 if [ "$TRAVIS_TAG" != "" ]; then
