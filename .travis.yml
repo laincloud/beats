@@ -13,6 +13,7 @@ deploy:
   api_key:
     secure: gxMT5vOY3j41tJPEz0cHe+9ToTWJe82PhgaTe05WQ20YImWoq0WyOkngUTI8FGxzLnXqXDGNbOZNtmUFp1QzQP0dUmaV+sClZeIdvtVNoH0DrDEDbV/4LVgK2cZJAafHD2guvUMgkgYamDAhmzZiO8Zot8PyyJyHgFXkPG6PDC08qbvhC6b1+tf6as7qh606KphfWYg1yhZuUy2dzws8i1qX+zR189mGBCPYjLudF2B+NYQQxuX0QxJRzliBWkG6DJ22RfTuictsGBu3g5fWPTUGmpTJHcTJG8YgASVMnPwfaK0YX4LUmC/mJMuoBlH9qimQg33RZd04wLtwXaUeJFn/pi/rtkXTCr402ilAwghv0+IjRf/KxXadb04i7fbgJHPOh0RBQKHPKhSXv7vE5mobH5ZLgzgCZmfEh88OZOxPM3TnsEh8d9h9ub9eeqsEMboIRwwlIkbkf3NHSjiD+4b4GuFCM+E8Po8oOHYUTJ/fj/vQHZPCgkUgmS1BgqxWa179jIRtxDr3D/nCuAOQP0SdD/stIO44hvphN91NTmR/9HUHneyjVJySuDJM2fIAvzknpfl44awJO58M8/jvdsPFzQn+VKbhCiuEUZ2i/NQyc07sb621dnb0jihRFd+pv4CqFVtJlvjE5GPPKzhd3+yVIvJ1mTnCl5Iv3Ji1X5A=
   file: filebeat-$TRAVIS_TAG-1.x86_64.rpm
+  skip_cleanup: true
   on:
     repo: laincloud/beats
     branch: feature_lain
