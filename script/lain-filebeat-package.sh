@@ -5,6 +5,7 @@ set -e
 RPM_VERSION='temp'
 if [ "$TRAVIS_TAG" != "" ]; then
     RPM_VERSION="$TRAVIS_TAG"
+fi
 
 BEAT_NAME='filebeat'
 wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.4.0-x86_64.rpm
