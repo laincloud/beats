@@ -4,7 +4,7 @@ set -ex
 
 RPM_VERSION='temp'
 if [ "$TRAVIS_TAG" != "" ]; then
-    RPM_VERSION="$TRAVIS_TAG"
+    RPM_VERSION=$(echo $TRAVIS_TAG | awk -F 'v' '{print $2}')
 fi
 
 BEAT_NAME='filebeat'
